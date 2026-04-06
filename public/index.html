@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Galaxy Dashboard 🌌</title>
+    <style>
+        body {
+            background: radial-gradient(circle at center, #1e0a2d 0%, #05020a 100%);
+            color: #b450ff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            height: 100vh;
+            display: flex; flex-direction: column; justify-content: center;
+        }
+        input {
+            background: #160a23; border: 2px solid #8a2be2;
+            padding: 15px; border-radius: 10px; color: white; width: 300px;
+            box-shadow: 0 0 15px #8a2be2;
+        }
+        button {
+            background: #8a2be2; color: white; border: none;
+            padding: 15px 30px; border-radius: 10px; cursor: pointer;
+            margin-top: 20px; font-weight: bold; transition: 0.3s;
+        }
+        button:hover { box-shadow: 0 0 25px #b450ff; transform: scale(1.05); }
+    </style>
+</head>
+<body>
+    <h1>Galaxy AI Dashboard</h1>
+    <input type="text" id="cmd" placeholder="اكتب الأمر لروبلوكس...">
+    <button onclick="sendCommand()">إرسال للمجرة 🚀</button>
+
+    <script>
+        async function sendCommand() {
+            const cmd = document.getElementById('cmd').value;
+            await fetch('/send-command', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({command: cmd})
+            });
+            alert("تم إرسال الأمر!");
+        }
+    </script>
+</body>
+</html>
